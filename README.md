@@ -1,6 +1,6 @@
 # vidIq Blog
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a simple blog built with Next.js.
 
 ## Setup Instructions
 
@@ -21,6 +21,13 @@ npm install
 ```bash
 npm run dev
 ```
+
+## Tech Stack
+
+- Next.js
+- Tailwind CSS
+- TypeScript
+- React
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
