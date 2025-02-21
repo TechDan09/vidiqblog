@@ -1,23 +1,31 @@
-import React from "react";
 import Image from "next/image";
 import { cx } from "@/utils/cx";
-import { slugify } from "@/utils/slugify";
+import Link from "next/link";
 
 type Props = {
+  id: number;
   image: string;
   title: string;
   excerpt: string;
   className?: string;
+  lazyLoadImage?: boolean;
 };
 
-export const BlogCard = ({ image, title, excerpt, className }: Props) => {
+export const BlogCard = ({
+  id,
+  image,
+  title,
+  excerpt,
+  className,
+  lazyLoadImage = false,
+}: Props) => {
   return (
-    <a
+    <Link
       className={cx(
-        "w-full h-full shadow-md rounded-lg overflow-hidden cursor-pointer block",
+        "w-full h-full shadow-md rounded-lg overflow-hidden cursor-pointer block group",
         className
       )}
-      href={`/blog/${slugify(title)}`}
+      href={`/blog/${id}`}
       title={title}
     >
       <Image
@@ -25,13 +33,17 @@ export const BlogCard = ({ image, title, excerpt, className }: Props) => {
         alt={title}
         width={400}
         height={250}
-        className="w-full h-[250px] object-cover"
+        style={{ width: "400px", height: "250px" }}
+        className="w-auto h-[250px] object-cover"
+        priority={lazyLoadImage}
       />
 
       <div className="p-4">
-        <h2 className="text-xl font-bold hover:underline">{title}</h2>
-        <p className="text-gray-500 mt-4">{excerpt}</p>
+        <h2 className="text-xl font-bold hover:underline group-hover:underline group-hover:text-blue-700">
+          {title}
+        </h2>
+        <p className="text-gray-700 mt-4">{excerpt}</p>
       </div>
-    </a>
+    </Link>
   );
 };

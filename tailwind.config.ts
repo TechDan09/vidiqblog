@@ -12,6 +12,9 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      container: {
+        padding: "1rem",
+      },
     },
   },
   plugins: [],
