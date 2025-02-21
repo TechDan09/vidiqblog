@@ -17,7 +17,11 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
   const res = await fetch(`${POSTS_API_BASE_URL}/${id}`, {
     cache: "force-cache",
@@ -36,7 +40,11 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   };
 }
 
-export default async function PostPage({ params }: { params: { id: string } }) {
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
 
   const post = await getBlogPost(id);

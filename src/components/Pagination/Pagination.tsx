@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect } from "react";
 import PaginationBtn from "../PaginationBtn/PaginationBtn";
 
 type Props = {
@@ -15,10 +12,6 @@ export const Pagination = ({
   entriesPerPage,
 }: Props) => {
   const totalPages = Math.ceil(totalEntries / entriesPerPage);
-
-  useEffect(() => {
-    throw new Error("test");
-  }, []);
 
   return (
     <div className="flex flex-wrap justify-center items-center gap-4">

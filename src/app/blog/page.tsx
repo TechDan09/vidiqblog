@@ -13,19 +13,18 @@ export const metadata: Metadata = {
 export default async function Blog({
   searchParams,
 }: {
-  searchParams: { page: string };
+  searchParams: Promise<{ page: string }>;
 }) {
   const { page } = await searchParams;
-  const { posts, total } = await getBlogPosts(Number(page));
+  const { posts, total } = await getBlogPosts(Number(page) || 1);
 
-  console.log({ total, page });
   return (
     <div>
       <section className="w-full bg-blue-700 py-40">
         <h1 className="text-5xl text-white text-center">Our Blog</h1>
       </section>
 
-      <section className="container mx-auto py-20 flex flex-wrap">
+      <section className="container mx-auto py-10 lg:py-20 flex flex-wrap">
         {posts.map(({ id, title, body }, index) => (
           <article key={id} className="p-4 lg:basis-1/3 md:basis-1/2">
             <BlogCard
