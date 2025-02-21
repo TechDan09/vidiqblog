@@ -33,12 +33,11 @@ export const BlogCard = ({
         alt={title}
         width={400}
         height={250}
-        style={{ width: "400px", height: "250px" }}
-        className="w-auto h-[250px] object-cover"
+        className="w-full h-[250px] object-cover"
         priority={lazyLoadImage}
       />
 
-      <div className="p-4">
+      <div className="block p-4">
         <h2 className="text-xl font-bold hover:underline group-hover:underline group-hover:text-blue-700">
           {title}
         </h2>

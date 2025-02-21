@@ -21,14 +21,17 @@ export const Pagination = ({
         label="Previous"
       />
 
-      {Array.from({ length: totalPages }, (_, index) => (
-        <PaginationBtn
-          key={index}
-          isActive={currentPage === index + 1}
-          href={`/blog?page=${index + 1}`}
-          label={`${index + 1}`}
-        />
-      ))}
+      <ul className="flex flex-wrap gap-4 justify-center">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <li key={index}>
+            <PaginationBtn
+              isActive={currentPage === index + 1}
+              href={`/blog?page=${index + 1}`}
+              label={`${index + 1}`}
+            />
+          </li>
+        ))}
+      </ul>
 
       <PaginationBtn
         isDisabled={currentPage === totalPages}

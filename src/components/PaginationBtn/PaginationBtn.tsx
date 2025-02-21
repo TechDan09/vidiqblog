@@ -26,6 +26,7 @@ const PaginationBtn = ({
         className
       )}
       aria-disabled={isDisabled}
+      aria-label={`Go to Page ${label}`}
     >
       {label}
     </Link>
