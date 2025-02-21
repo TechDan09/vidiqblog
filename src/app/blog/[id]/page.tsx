@@ -1,7 +1,6 @@
 import { extractExcerpt } from "@/utils/extractExcerpt";
 import { Post } from "@/utils/types";
 import Image from "next/image";
-import { notFound } from "next/navigation";
 import PaginationBtn from "@/components/PaginationBtn/PaginationBtn";
 import { POSTS_API_BASE_URL } from "@/utils/constants";
 import Script from "next/script";
@@ -23,12 +22,10 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const res = await fetch(`${POSTS_API_BASE_URL}/${id}`, {
-    cache: "force-cache",
-  });
+  const res = await fetch(`${POSTS_API_BASE_URL}/${id}`);
 
   if (!res.ok) {
-    return notFound();
+    return;
   }
 
   const post = (await res.json()) as Post;
@@ -37,6 +34,17 @@ export async function generateMetadata({
     title: post.title,
     description: extractExcerpt(post.body),
     keywords: "vidiq blog, Blog",
+    openGraph: {
+      title: post.title,
+      description: extractExcerpt(post.body),
+      images: [
+        {
+          url: `https://picsum.photos/1280/400?random=${post.id}`,
+          width: 1280,
+          height: 400,
+        },
+      ],
+    },
   };
 }
 
@@ -49,6 +57,7 @@ export default async function BlogPost({
 
   const post = await getBlogPost(id);
 
+  const { title, body, id: postId } = post;
   return (
     <>
       <Script
@@ -61,8 +70,8 @@ export default async function BlogPost({
       <article className="container mx-auto py-10">
         <div className="flex flex-col gap-4">
           <Image
-            src={`https://picsum.photos/1280/400?random=${post.id}`}
-            alt={post.title}
+            src={`https://picsum.photos/1280/400?random=${postId}`}
+            alt={title}
             width={800}
             height={600}
             className="rounded-lg w-full h-[150px] md:h-[400px] object-cover object-center"
@@ -70,8 +79,8 @@ export default async function BlogPost({
             priority
           />
 
-          <h1 className="text-2xl font-bold">{post.title}</h1>
-          <p className="text-gray-700">{post.body}</p>
+          <h1 className="text-2xl font-bold">{title}</h1>
+          <p className="text-gray-700">{body}</p>
 
           <div className="flex gap-4 justify-between pt-5">
             <PaginationBtn

@@ -1,6 +1,7 @@
 import { ENTRIES_PER_PAGE, POSTS_API_BASE_URL } from "@/utils/constants";
 import { Post } from "@/utils/types";
 import { notFound } from "next/navigation";
+
 export const getBlogPosts = async (
   page = 1
 ): Promise<{ posts: Post[]; total: number }> => {

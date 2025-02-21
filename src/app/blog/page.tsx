@@ -8,6 +8,17 @@ import { ENTRIES_PER_PAGE } from "@/utils/constants";
 export const metadata: Metadata = {
   title: "Blog",
   description: "Blog about vidIq",
+  openGraph: {
+    title: "Blog",
+    description: "Blog about vidIq",
+    images: [
+      {
+        url: "https://picsum.photos/1280/400?random=1",
+        width: 1280,
+        height: 400,
+      },
+    ],
+  },
 };
 
 export default async function Blog({
