@@ -7,7 +7,7 @@ This is a simple blog built with Next.js.
 1. Clone the repository
 
 ```bash
-git clone https://github.com/techdan09/your-repo-name.git
+git clone https://github.com/TechDan09/vidiqblog.git
 ```
 
 2. Install dependencies
